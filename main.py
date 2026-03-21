@@ -38,3 +38,13 @@ def delete_person(mobile: str):
         raise HTTPException(status_code=404, detail="Person not found")
     del db[mobile]
     return {"message": "Person deleted"}
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ideally specific domain in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
